@@ -1,5 +1,7 @@
 package com.infinity.user.service;
 
+import com.infinity.user.dto.UserDTO;
+import com.infinity.user.mapper.UserMapper;
 import com.infinity.user.model.UserEntity;
 import com.infinity.user.repository.IUserRepository;
 import lombok.AllArgsConstructor;
@@ -15,13 +17,19 @@ public class UserServiceImpl implements IUserService{
 
 
     @Override
-    public ResponseEntity<UserEntity> create(UserEntity user) {
+    public ResponseEntity<UserEntity> create(UserDTO user) {
+       /* UserEntity userDb= new UserEntity();
+        userDb.setDocument(user.getDocument());
+        userDb.setEmail(user.getEmail());
+        userDb.setLastname(user.getLastname());
+        userDb.setName(user.getName());*/
 
-        var newUSer = this.repository.save(user);
+        UserEntity userDb=  UserMapper.dtoToEntity(user);
+
+        var newUSer = this.repository.save(userDb);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(newUSer);
     }
-
 }
