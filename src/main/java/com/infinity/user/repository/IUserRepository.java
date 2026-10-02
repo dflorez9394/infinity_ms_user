@@ -30,8 +30,11 @@ public interface IUserRepository extends JpaRepository<UserEntity,String> {
     List<UserEntity> findByNameAndLastname(String name, String lastname);
 
 
+    /**
+     *  SELECT * FROM user u where u.name like '%valor%'
+     */
     List<UserEntity> findByNameContaining(String name);
 
-    // tipoDatoRetorno/void  nombreMetodo(TipoDatoPArametro nombreParametro);
+
 
 }
