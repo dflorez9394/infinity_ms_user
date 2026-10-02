@@ -13,5 +13,14 @@ public class UserMapper {
                 .name(userDTO.getName())
                 .build();
     }
+    public static UserDTO entityToDto(UserEntity entity){
+        return UserDTO.builder()
+                .document(entity.getDocument())
+                .lastname(entity.getLastname())
+                .name(entity.getName())
+                .email(entity.getEmail())
+                .build();
+
+    }
 
 }

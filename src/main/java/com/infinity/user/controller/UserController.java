@@ -6,10 +6,7 @@ import com.infinity.user.model.UserEntity;
 import com.infinity.user.service.IUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
@@ -23,5 +20,17 @@ public class UserController implements IUserDoc {
             @RequestBody UserDTO user
     ){
         return this.service.create(user);
+    }
+
+    @Override
+    @GetMapping("/names")
+    public ResponseEntity<?> listByName(String name) {
+        return this.service.getAllPorNombre(name);
+    }
+
+    @Override
+    @GetMapping("/name/concidents")
+    public ResponseEntity<?> listByNameConsidents(String name) {
+        return this.service.getNameConsidents(name);
     }
 }
