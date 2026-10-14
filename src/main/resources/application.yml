@@ -12,3 +12,7 @@ spring:
     show-sql: true
 server:
   port: 8081
+control:
+  exception:
+    perzonalisada: Se genero error de negocio
+    system: Se genero error del sistema
