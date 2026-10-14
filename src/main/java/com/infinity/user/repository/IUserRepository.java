@@ -36,5 +36,6 @@ public interface IUserRepository extends JpaRepository<UserEntity,String> {
     List<UserEntity> findByNameContaining(String name);
 
 
+    List<UserEntity> findByDocument(String document);
 
 }

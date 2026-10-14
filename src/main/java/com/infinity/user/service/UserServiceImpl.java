@@ -1,6 +1,7 @@
 package com.infinity.user.service;
 
 import com.infinity.user.dto.UserDTO;
+import com.infinity.user.exception.MyHandleException;
 import com.infinity.user.mapper.UserMapper;
 import com.infinity.user.model.UserEntity;
 import com.infinity.user.repository.IUserRepository;
@@ -26,6 +27,14 @@ public class UserServiceImpl implements IUserService{
         userDb.setEmail(user.getEmail());
         userDb.setLastname(user.getLastname());
         userDb.setName(user.getName());*/
+        //Validar si existe el usuario
+        var  userOld= this.repository.findByDocument(user.getDocument());
+        if(!userOld.isEmpty()){
+            throw new MyHandleException(
+                    "Ya existe un usuario con el documento " + user.getDocument()
+            );
+        }
+
 
         UserEntity userDb=  UserMapper.dtoToEntity(user);
 
